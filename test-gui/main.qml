@@ -2,11 +2,14 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 
 ApplicationWindow {
+    id: window
     visible: true
     width: 600
     height: 500
-    title: "HelloApp"
+    title: "Submarine"
     color: "black"
+
+    property string command: ""
 
     Text
     {
@@ -30,20 +33,20 @@ ApplicationWindow {
 
         TextInput
         {
-            id: inputText
+            id: commandTextBox
             anchors.left: parent.right
             anchors.bottom: parent.bottom
-            text: "Text here"
+            width: terminal.width
+            text: ""
             font.pixelSize: 30
             color: "white"
             padding: 2
 
             onAccepted:
             {
-                terminal.text = terminal.text + "\n" + inputText.text
-                inputText.clear()
+                command = commandTextBox.text
+                commandTextBox.clear()
             }
         }
     }
-
 }
